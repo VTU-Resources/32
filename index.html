@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Exam Fix | Subject Code Access</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -14,7 +14,7 @@
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       padding: 20px;
     }
     .container {
@@ -26,6 +26,7 @@
       padding: 40px 30px;
       text-align: center;
       transition: all 0.3s ease;
+      margin-top: 40px;
     }
     h1 {
       font-size: 28px;
@@ -91,6 +92,23 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 20px;
+        margin-top: 20px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      p {
+        font-size: 14px;
+      }
+      button {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -141,6 +159,7 @@
         return;
       }
 
+      // Store in localStorage temporarily to simulate session
       localStorage.setItem("subjectCode", code);
       loadSubjectPage(code);
     }
@@ -168,13 +187,6 @@
         window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
       };
     }
-
-    // Scroll input into view when focused (mobile fix)
-    subjectInput.addEventListener('focus', () => {
-      setTimeout(() => {
-        subjectInput.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 300);
-    });
 
     // Reset to input screen on page refresh
     window.onload = () => {
