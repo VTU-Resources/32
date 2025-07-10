@@ -3,147 +3,159 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title id="dynamicTitle">Exam Fix Questions</title>
+  <title>Exam Fix | Subject Code Access</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Poppins', Arial, sans-serif;
-      background: linear-gradient(135deg, #f0f4f8, #dbeafe);
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #eef2f7, #f8fafc);
       color: #1e293b;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
       padding: 20px;
     }
     .container {
-      background: #ffffff;
-      border-radius: 14px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      padding: 40px;
-      max-width: 600px;
+      background: #fff;
+      border-radius: 16px;
+      max-width: 650px;
       width: 100%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      padding: 40px 30px;
       text-align: center;
+      transition: all 0.3s ease;
     }
     h1 {
-      font-size: 30px;
+      font-size: 28px;
+      margin-bottom: 12px;
+      font-weight: 700;
       color: #0f172a;
-      margin-bottom: 15px;
     }
     p {
-      font-size: 16px;
       color: #475569;
-      margin-bottom: 20px;
-    }
-    .input-group {
-      text-align: left;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      font-size: 15px;
     }
     label {
-      font-weight: 600;
-      margin-bottom: 8px;
       display: block;
+      text-align: left;
+      font-weight: 600;
+      margin-bottom: 6px;
       color: #334155;
     }
     input {
       width: 100%;
       padding: 12px;
-      font-size: 16px;
       border: 2px solid #cbd5e1;
-      border-radius: 8px;
+      border-radius: 10px;
+      font-size: 15px;
+      margin-bottom: 20px;
+      transition: border 0.2s;
+    }
+    input:focus {
+      border-color: #2563eb;
+      outline: none;
     }
     button {
-      background-color: #1d4ed8;
-      color: #ffffff;
+      background-color: #2563eb;
+      color: #fff;
       border: none;
-      padding: 12px 24px;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 8px;
+      padding: 12px 28px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 10px;
       cursor: pointer;
-      margin-top: 10px;
+      transition: background 0.2s ease;
     }
     button:hover {
       background-color: #1e40af;
     }
     img {
       width: 100%;
-      border-radius: 10px;
-      margin-bottom: 20px;
+      border-radius: 12px;
+      margin-bottom: 25px;
     }
-    .hidden { display: none; }
+    .hidden {
+      display: none;
+    }
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .fade-in {
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <div class="container fade-in">
     <img src="1.png" alt="Exam Banner" />
-    
-    <!-- Search Section -->
+
+    <!-- SEARCH SECTION -->
     <div id="searchSection">
-      <h1>Enter Full Subject Code</h1>
-      <p>Example: BCS405A, MTH101B, etc.</p>
+      <h1>Access Exam Fix Questions</h1>
+      <p>Enter the full subject code to unlock guaranteed questions & PDF access.</p>
       <div class="input-group">
         <label for="subjectInput">Subject Code <span style="color: red;">*</span></label>
-        <input type="text" id="subjectInput" placeholder="Enter Subject Code" required />
+        <input type="text" id="subjectInput" placeholder="e.g., BCS405A" required />
       </div>
       <button onclick="handleSearch()">Search</button>
     </div>
 
-    <!-- Result Section -->
+    <!-- RESULT SECTION -->
     <div id="resultSection" class="hidden">
-      <h1 id="subjectTitle">DMS - SubjectCode Exam Fix Questions</h1>
-      <p id="subjectDesc">Pay ₹299 to access Exam Fix Questions for <strong id="subjectStrong">SubjectCode</strong>. <br> Definitely Pass & Well Score</p>
+      <h1 id="subjectTitle">SubjectCode Exam Fix Questions</h1>
+      <p id="subjectDesc">Pay ₹299 to access Exam Fix Questions for <strong id="subjectStrong">SubjectCode</strong>. Definitely Pass & Well Score.</p>
       
-      <h6>Fill the details to receive the PDF:</h6>
+      <h4 style="margin: 25px 0 10px; color: #0f172a;">ALL THE BEST</h4>
       <form id="payment-form">
         <div class="input-group">
           <label for="name">Your Name <span style="color: red;">*</span></label>
-          <input type="text" id="name" name="name" required />
+          <input type="text" id="name" name="name" placeholder="Enter your name" required />
         </div>
         <div class="input-group">
           <label for="email">Your Email <span style="color: red;">*</span></label>
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="email" name="email" placeholder="Enter your email" required />
         </div>
-        <button type="button" id="payButton">Pay Now</button>
+        <button type="button" id="payButton">Continue</button>
       </form>
     </div>
   </div>
 
   <script>
-    // On page load, check if subject code is in URL
-    window.onload = function () {
-      const params = new URLSearchParams(window.location.search);
-      const subject = params.get('subject');
-      if (subject) {
-        showSubjectPage(subject.toUpperCase());
-      }
-    }
+    const searchSection = document.getElementById("searchSection");
+    const resultSection = document.getElementById("resultSection");
+    const subjectInput = document.getElementById("subjectInput");
 
     function handleSearch() {
-      const subjectInput = document.getElementById('subjectInput').value.trim().toUpperCase();
-      if (!subjectInput) {
-        alert("Please enter the full subject code.");
+      const code = subjectInput.value.trim().toUpperCase();
+      if (!code) {
+        alert("Please enter the subject code.");
         return;
       }
 
-      // Redirect with subject code in URL
-      window.location.href = window.location.pathname + '?subject=' + encodeURIComponent(subjectInput);
+      // Store in localStorage temporarily to simulate session
+      localStorage.setItem("subjectCode", code);
+      loadSubjectPage(code);
     }
 
-    function showSubjectPage(subjectCode) {
-      // Hide search, show result
-      document.getElementById('searchSection').classList.add('hidden');
-      document.getElementById('resultSection').classList.remove('hidden');
+    function loadSubjectPage(code) {
+      searchSection.classList.add("hidden");
+      resultSection.classList.remove("hidden");
 
-      // Set dynamic content
-      document.getElementById('dynamicTitle').textContent = subjectCode + " - Exam Fix Questions";
-      document.getElementById('subjectTitle').textContent = subjectCode + " Exam Fix Questions";
-      document.getElementById('subjectStrong').textContent = subjectCode;
-      document.getElementById('subjectDesc').innerHTML = `Pay ₹299 to access Exam Fix Questions for <strong>${subjectCode}</strong>.<br> Definitely Pass & Well Score`;
+      document.title = `${code} - Exam Fix Questions`;
+      document.getElementById("subjectTitle").innerText = `${code} Exam Fix Questions`;
+      document.getElementById("subjectStrong").innerText = code;
+      document.getElementById("subjectDesc").innerHTML = `Pay ₹299 to access Exam Fix Questions for <strong>${code}</strong>. Definitely 85+ & Well Score.`;
 
-      // Pay button action
-      document.getElementById('payButton').onclick = function () {
+      document.getElementById("payButton").onclick = function () {
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
 
@@ -152,12 +164,18 @@
           return;
         }
 
-        const phone = '9113039893';
-        const message = encodeURIComponent(`I Need ${subjectCode} Premium Most Important Questions`);
-        const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
-        window.open(whatsappUrl, '_blank');
+        const whatsappNumber = "9113039893";
+        const message = encodeURIComponent(`I Need ${code} Premium Most Important Questions`);
+        window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
       };
     }
+
+    // Reset to input screen on page refresh
+    window.onload = () => {
+      localStorage.removeItem("subjectCode");
+      searchSection.classList.remove("hidden");
+      resultSection.classList.add("hidden");
+    };
   </script>
 
 </body>
